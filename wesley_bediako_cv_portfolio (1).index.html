@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wesley Sarpong Bediako — Product Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ee;
+    --accent: #c8a96e;
+    --accent-dark: #9a7a45;
+    --mid: #3a3530;
+    --light-bg: #edeae5;
+    --text: #1a1714;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(245,242,238,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--black);
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--mid); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent-dark); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-left {
+    background: var(--black);
+    padding: 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left::before {
+    content: 'WSB';
+    position: absolute; bottom: -1rem; right: -1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 14rem; font-weight: 900;
+    color: rgba(200,169,110,0.08);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .hero-tag {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+  .hero-name span { color: var(--accent); display: block; }
+  .hero-title {
+    font-size: 0.85rem; font-weight: 400; letter-spacing: 0.06em;
+    color: rgba(245,242,238,0.55);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-contact {
+    display: flex; flex-direction: column; gap: 0.5rem;
+    border-top: 1px solid rgba(245,242,238,0.12);
+    padding-top: 2rem;
+  }
+  .hero-contact a, .hero-contact span {
+    font-size: 0.82rem; color: rgba(245,242,238,0.6);
+    text-decoration: none; transition: color 0.2s;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .hero-contact a:hover { color: var(--accent); }
+  .hero-contact .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  .hero-right {
+    background: var(--light-bg);
+    padding: 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .intro-label {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent-dark);
+    margin-bottom: 1rem;
+  }
+  .intro-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--black);
+    margin-bottom: 2rem;
+  }
+  .intro-body {
+    font-size: 0.9rem; line-height: 1.8;
+    color: var(--mid); max-width: 460px;
+    margin-bottom: 2.5rem;
+  }
+  .pill-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .pill {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border: 1.5px solid var(--accent);
+    color: var(--accent-dark);
+    border-radius: 100px;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+  .section-header {
+    display: flex; align-items: baseline; gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; font-weight: 900;
+    color: rgba(0,0,0,0.07);
+    line-height: 1;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700;
+    color: var(--black);
+  }
+  .section-line {
+    flex: 1; height: 1px; background: rgba(0,0,0,0.12); align-self: center;
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--white); }
+  .exp-grid { display: grid; gap: 0; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    position: relative;
+    transition: background 0.2s;
+  }
+  .exp-item:first-child { border-top: 1px solid rgba(0,0,0,0.08); }
+  .exp-item:hover { background: var(--light-bg); padding-left: 1rem; padding-right: 1rem; margin: 0 -1rem; border-radius: 8px; }
+  .exp-date {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent-dark);
+    padding-top: 0.2rem;
+  }
+  .exp-current {
+    display: inline-block; font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    background: var(--accent); color: var(--white);
+    padding: 0.15rem 0.5rem; border-radius: 100px;
+    margin-top: 0.4rem;
+  }
+  .exp-role { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--black); margin-bottom: 0.3rem; }
+  .exp-company { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 1rem; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .exp-bullets li {
+    font-size: 0.88rem; color: var(--mid); line-height: 1.6;
+    padding-left: 1rem; position: relative;
+  }
+  .exp-bullets li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--accent); font-size: 0.75rem;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--black); }
+  #skills .section-num { color: rgba(255,255,255,0.06); }
+  #skills .section-title { color: var(--white); }
+  #skills .section-line { background: rgba(255,255,255,0.12); }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .skill-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .skill-card:hover { background: rgba(200,169,110,0.08); border-color: var(--accent); }
+  .skill-card-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+  .skill-card-title { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+  .skill-card-list { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+  .skill-card-list li { font-size: 0.85rem; color: rgba(245,242,238,0.65); }
+
+  /* EDUCATION */
+  #education { background: var(--light-bg); }
+  .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .edu-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    border-left: 3px solid var(--accent);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .edu-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+  .edu-year { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-dark); margin-bottom: 0.6rem; }
+  .edu-degree { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--black); margin-bottom: 0.4rem; line-height: 1.3; }
+  .edu-school { font-size: 0.82rem; color: var(--mid); }
+
+  /* LANGUAGES */
+  #languages { background: var(--white); }
+  .lang-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .lang-card {
+    text-align: center; padding: 2.5rem 1.5rem;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .lang-card:hover { border-color: var(--accent); background: var(--light-bg); }
+  .lang-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--black); margin-bottom: 0.4rem; }
+  .lang-level { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-dark); }
+
+  /* REFERENCES */
+  #references { background: var(--black); }
+  #references .section-num { color: rgba(255,255,255,0.06); }
+  #references .section-title { color: var(--white); }
+  #references .section-line { background: rgba(255,255,255,0.12); }
+  .ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .ref-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .ref-icon {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--accent); display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;
+    color: var(--white); flex-shrink: 0;
+  }
+  .ref-name { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 0.2rem; }
+  .ref-role { font-size: 0.78rem; color: rgba(245,242,238,0.5); }
+
+  /* FOOTER */
+  footer {
+    background: var(--white);
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding: 2rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--black); }
+  .footer-copy { font-size: 0.75rem; color: var(--mid); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > *, .hero-right > * {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-right > *:nth-child(1) { animation-delay: 0.3s; }
+  .hero-right > *:nth-child(2) { animation-delay: 0.4s; }
+  .hero-right > *:nth-child(3) { animation-delay: 0.5s; }
+  .hero-right > *:nth-child(4) { animation-delay: 0.6s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left, .hero-right { padding: 3.5rem 2rem; }
+    .skills-grid, .edu-grid { grid-template-columns: 1fr 1fr; }
+    .lang-grid { grid-template-columns: 1fr 1fr; }
+    .ref-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .container { padding: 0 1.5rem; }
+  }
+  @media (max-width: 600px) {
+    .skills-grid, .edu-grid, .lang-grid { grid-template-columns: 1fr; }
+    .section-num { font-size: 2.5rem; }
+    .section-title { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Wesley Sarpong Bediako</div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#languages">Languages</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Product Marketing · Adidas</div>
+    <h1 class="hero-name">Wesley<span>Sarpong Bediako</span></h1>
+    <p class="hero-title">
+      Product Manager — Global Product Marketing<br>
+      Running Collaborations & Partnerships · Adidas
+    </p>
+    <div class="hero-contact">
+      <span><span class="dot"></span>Nürnberg, Germany</span>
+      <a href="tel:01709735793"><span class="dot"></span>0170-9735793</a>
+      <a href="/cdn-cgi/l/email-protection#0c7b697f6069756e6968656d67634c656f60637968226f6361"><span class="dot"></span><span class="__cf_email__" data-cfemail="a1d6c4d2cdc4d8c3c4c5c8c0cacee1c8c2cdced4c58fc2cecc">[email&#160;protected]</span></a>
+      <a href="https://www.linkedin.com/in/wesley-sarpong-b-0324b874/" target="_blank"><span class="dot"></span>LinkedIn Profile</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <p class="intro-label">About Me</p>
+    <p class="intro-text">Building products that sit at the intersection of sport, culture, and storytelling.</p>
+    <p class="intro-body">
+      Product marketing professional with a background in fashion wholesale and sports management. Currently leading global product marketing strategy at Adidas for Running Collaborations & Partnerships — driving the full creation cycle from concept through launch, managing high-profile collaboration partners, and aligning cross-functional teams worldwide. Passionate about brands that move culture forward.
+    </p>
+    <div class="pill-group">
+      <span class="pill">Product Management</span>
+      <span class="pill">Global Collaborations</span>
+      <span class="pill">Brand Partnerships</span>
+      <span class="pill">Stakeholder Management</span>
+      <span class="pill">Running</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="exp-grid">
+
+      <div class="exp-item">
+        <div class="exp-date">
+          10.2025 — Present
+          <div class="exp-current">Current</div>
+        </div>
+        <div>
+          <div class="exp-role">Product Manager, Global Product Marketing</div>
+          <div class="exp-company">Adidas · Running Collaborations & Partnerships · Herzogenaurach</div>
+          <ul class="exp-bullets">
+            <li>Leading global product marketing strategy for Running Collaborations & Partnerships</li>
+            <li>Managing end-to-end product creation from concept through global market launch</li>
+            <li>Owning partner relationships and communication across the full creation cycle</li>
+            <li>Aligning cross-functional stakeholders (Design, Comms, Development) on creative vision and execution</li>
+            <li>Driving collaboration strategy and ensuring cultural relevance across global markets</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">05.2025 — 10.2025</div>
+        <div>
+          <div class="exp-role">Assistant Product Manager, Global Product Marketing</div>
+          <div class="exp-company">Adidas · Running Collaborations & Partnerships · Herzogenaurach</div>
+          <ul class="exp-bullets">
+            <li>Supported the Hermanos Koumori × adidas UltraBOOST 5 collaboration from concept to launch</li>
+            <li>Managed partner communication and stakeholder alignment throughout the creation phase</li>
+            <li>Coordinated between internal functions to streamline workflows and meet global deadlines</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">03.2024 — 05.2025</div>
+        <div>
+          <div class="exp-role">Assistant Product Manager, Global Product Marketing</div>
+          <div class="exp-company">Adidas · Running Footwear · Herzogenaurach</div>
+          <ul class="exp-bullets">
+            <li>Supported SMU processes, marathon event SMUs, and collaborations in Running Footwear on a global scale</li>
+            <li>Drove the product creation process from concept to market launch across multiple categories</li>
+            <li>Built and maintained relationships with collaboration partners and internal stakeholders</li>
+            <li>Collaborated with the Triad (Design, Comms, Development) to ensure product success</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">09.2023 — 03.2024</div>
+        <div>
+          <div class="exp-role">Intern, Global Product Marketing</div>
+          <div class="exp-company">Adidas · Running Apparel · Herzogenaurach</div>
+          <ul class="exp-bullets">
+            <li>Assisted the Running Apparel team from concept to execution</li>
+            <li>Supported daily product management operations and cross-functional coordination</li>
+            <li>Contributed to product launches, promotional events, and market trend analysis</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">05.2017 — 04.2019</div>
+        <div>
+          <div class="exp-role">Apprentice — Wholesale</div>
+          <div class="exp-company">PVH Holdings · Düsseldorf</div>
+          <ul class="exp-bullets">
+            <li>Curated fashion product ranges aligned with market trends and retailer preferences</li>
+            <li>Managed order fulfilment to ensure timely and accurate retailer deliveries</li>
+            <li>Researched fashion industry trends, competitor activities, and market demands</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">03.2015 — 09.2015</div>
+        <div>
+          <div class="exp-role">Temporary Sales Associate</div>
+          <div class="exp-company">Snipes</div>
+          <ul class="exp-bullets">
+            <li>Customer-oriented sales service in a high-traffic retail environment</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">02.2014 — 09.2014</div>
+        <div>
+          <div class="exp-role">Part-Time Sales Associate</div>
+          <div class="exp-company">American Apparel</div>
+          <ul class="exp-bullets">
+            <li>Customer-oriented sales service with a focus on brand experience</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background: var(--black);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num" style="color:rgba(255,255,255,0.06);">02</span>
+      <h2 class="section-title" style="color:var(--white);">Selected Projects</h2>
+      <div class="section-line" style="background:rgba(255,255,255,0.12);"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:2rem;border-top:2px solid var(--accent);transition:border-color 0.2s;">
+        <div style="font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(100,150,255,0.8);margin-bottom:0.6rem;">APM · June 2025</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:0.3rem;">Hermanos Koumori × UltraBOOST 5</div>
+        <div style="font-size:0.75rem;color:var(--accent);margin-bottom:1rem;">Mexico City · Adidas Running</div>
+        <p style="font-size:0.82rem;color:rgba(245,242,238,0.5);line-height:1.7;">Performance running collab with Mexico City's Hermanos Koumori. As seen on Hypebeast & Highsnobiety.</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:2rem;border-top:2px solid var(--accent);transition:border-color 0.2s;">
+        <div style="font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(100,150,255,0.8);margin-bottom:0.6rem;">APM · January 2026</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:0.3rem;">Hermanos Koumori × Adizero EVO SL</div>
+        <div style="font-size:0.75rem;color:var(--accent);margin-bottom:1rem;">Mexico City · Adidas Running</div>
+        <p style="font-size:0.82rem;color:rgba(245,242,238,0.5);line-height:1.7;">Second collab chapter on the Adizero EVO SL. Highsnobiety exclusive feature on launch.</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(200,169,110,0.3);border-radius:12px;padding:2rem;border-top:2px solid var(--accent);">
+        <div style="font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;">PM · March 2026</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:0.3rem;">LABRUM London × Adizero SS26</div>
+        <div style="font-size:0.75rem;color:var(--accent);margin-bottom:1rem;">London · West African Heritage Capsule</div>
+        <p style="font-size:0.82rem;color:rgba(245,242,238,0.5);line-height:1.7;">Full performance running capsule with Foday Dumbuya's LABRUM. Previewed at London Fashion Week AW26.</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(200,169,110,0.3);border-radius:12px;padding:2rem;border-top:2px solid var(--accent);">
+        <div style="font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;">PM · April 2026</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:0.3rem;">Song for the Mute × adidas Running SS26</div>
+        <div style="font-size:0.75rem;color:var(--accent);margin-bottom:1rem;">Sydney · "The First Breath"</div>
+        <p style="font-size:0.82rem;color:rgba(245,242,238,0.5);line-height:1.7;">First-ever SFTM × adidas Running performance collection. Global launch on Supernova Rise 3 and Adi365 system.</p>
+      </div>
+
+    </div>
+    <div style="margin-top:2rem;text-align:center;">
+      <a href="wesley_bediako_portfolio.html" style="display:inline-block;font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);text-decoration:none;padding:0.8rem 2rem;border:1.5px solid var(--accent);border-radius:100px;transition:background 0.2s;">View Full Portfolio →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🎯</div>
+        <div class="skill-card-title">Product & Marketing</div>
+        <ul class="skill-card-list">
+          <li>Product Creation Process</li>
+          <li>Go-to-Market Strategy</li>
+          <li>Collaboration Management</li>
+          <li>Launch Coordination</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">📊</div>
+        <div class="skill-card-title">Analysis & Insights</div>
+        <ul class="skill-card-list">
+          <li>Trend & Market Analysis</li>
+          <li>Competitor Research</li>
+          <li>Consumer Insights</li>
+          <li>Sales Data Tracking</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🤝</div>
+        <div class="skill-card-title">Stakeholder & Comms</div>
+        <ul class="skill-card-list">
+          <li>Partner Communication</li>
+          <li>Cross-functional Alignment</li>
+          <li>Relationship Building</li>
+          <li>Negotiation</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">💡</div>
+        <div class="skill-card-title">Creative & Strategic</div>
+        <ul class="skill-card-list">
+          <li>Creative Problem-Solving</li>
+          <li>Brand Storytelling</li>
+          <li>Innovation Thinking</li>
+          <li>Cultural Awareness</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">⚙️</div>
+        <div class="skill-card-title">Operational</div>
+        <ul class="skill-card-list">
+          <li>Time Management</li>
+          <li>Workflow Coordination</li>
+          <li>Deadline Management</li>
+          <li>Tech Savviness</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🌍</div>
+        <div class="skill-card-title">Soft Skills</div>
+        <ul class="skill-card-list">
+          <li>Adaptability</li>
+          <li>Team Collaboration</li>
+          <li>Creativity</li>
+          <li>Cultural Sensitivity</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid">
+
+      <div class="edu-card">
+        <div class="edu-year">2021 – 2024</div>
+        <div class="edu-degree">B.A. Sport Management & Communication</div>
+        <div class="edu-school">German Sport University Cologne, Germany</div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-year">2017 – 2019</div>
+        <div class="edu-degree">IHK Apprenticeship — Merchant for Wholesale & Foreign Trade</div>
+        <div class="edu-school">PVH Holding GmbH, Düsseldorf</div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-year">2006 – 2014</div>
+        <div class="edu-degree">GCE A-Levels</div>
+        <div class="edu-school">Heinrich-Heine-Gymnasium, Dortmund</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section id="languages">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Languages</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="lang-grid">
+      <div class="lang-card">
+        <div class="lang-name">German</div>
+        <div class="lang-level">Mother Tongue</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">Ghanaian</div>
+        <div class="lang-level">Fluent</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">English</div>
+        <div class="lang-level">Fluent</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="references">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">References</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <div class="ref-icon">JM</div>
+        <div>
+          <div class="ref-name">Jan Metzinger</div>
+          <div class="ref-role">Senior Product Manager · BU Running · Adidas</div>
+        </div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-icon">SM</div>
+        <div>
+          <div class="ref-name">Stefan Muehleisen</div>
+          <div class="ref-role">Senior Product Manager · BU Running · Adidas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Wesley Sarpong Bediako</div>
+  <div class="footer-copy">Product Manager · Global Product Marketing · Running Collaborations & Partnerships · Adidas</div>
+</footer>
+
+</body>
+</html>
