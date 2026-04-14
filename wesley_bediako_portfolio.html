@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wesley Bediako — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ee;
+    --accent: #c8a96e;
+    --accent-dark: #9a7a45;
+    --mid: #3a3530;
+    --light-bg: #edeae5;
+    --text: #1a1714;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,10,0.9);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--white); text-decoration: none; }
+  .nav-right { display: flex; gap: 2rem; align-items: center; }
+  .nav-right a { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .nav-right a:hover { color: var(--accent); }
+  .nav-cta {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.5rem 1.2rem; border: 1.5px solid var(--accent); color: var(--accent);
+    border-radius: 100px; text-decoration: none; transition: background 0.2s, color 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent); color: var(--black); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative; overflow: hidden;
+    padding-top: 80px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 60% at 80% 30%, rgba(200,169,110,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 70%, rgba(200,169,110,0.06) 0%, transparent 50%);
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+  .hero-eyebrow {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900; line-height: 0.95;
+    margin-bottom: 2rem;
+  }
+  .hero-title .line2 { color: var(--accent); display: block; }
+  .hero-sub {
+    font-size: 1rem; font-weight: 300; color: rgba(255,255,255,0.5);
+    max-width: 480px; line-height: 1.7; margin-bottom: 3rem;
+  }
+  .hero-stats { display: flex; gap: 3rem; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: var(--white); line-height: 1; }
+  .stat-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 0.3rem; }
+  .stat-divider { width: 1px; background: rgba(255,255,255,0.1); }
+
+  /* SCROLL HINT */
+  .scroll-hint {
+    position: absolute; bottom: 2rem; right: 3rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+  .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, rgba(200,169,110,0.8), transparent); animation: scrollPulse 2s ease infinite; }
+  @keyframes scrollPulse { 0%,100% { opacity:0.4; } 50% { opacity:1; } }
+
+  /* PROJECTS */
+  .projects-section { padding: 6rem 3rem; }
+  .section-label {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::before { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); }
+  .projects-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700; color: var(--white);
+    margin-bottom: 4rem; max-width: 600px; line-height: 1.15;
+  }
+
+  /* PROJECT CARDS */
+  .project-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 480px;
+    margin-bottom: 2px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .project-card:nth-child(even) { direction: rtl; }
+  .project-card:nth-child(even) > * { direction: ltr; }
+
+  .project-visual {
+    position: relative;
+    overflow: hidden;
+    background: #111;
+  }
+  .project-visual img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+    filter: grayscale(20%);
+  }
+  .project-card:hover .project-visual img { transform: scale(1.04); filter: grayscale(0%); }
+  .project-visual-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, transparent 60%);
+  }
+  .project-num-badge {
+    position: absolute; top: 1.5rem; left: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+    color: var(--accent); padding: 0.4rem 0.8rem; border-radius: 100px;
+    border: 1px solid rgba(200,169,110,0.3);
+  }
+  .press-badge {
+    position: absolute; bottom: 1.5rem; right: 1.5rem;
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);
+    color: rgba(255,255,255,0.7); padding: 0.35rem 0.8rem; border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .project-info {
+    background: #111;
+    padding: 3.5rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative;
+  }
+  .project-info::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(to right, var(--accent), transparent);
+  }
+  .project-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .project-tag {
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent-dark); background: rgba(200,169,110,0.1);
+    padding: 0.3rem 0.8rem; border-radius: 100px;
+    border: 1px solid rgba(200,169,110,0.2);
+  }
+  .project-date { font-size: 0.7rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; }
+  .project-role-badge {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.25rem 0.6rem; border-radius: 100px;
+  }
+  .role-apm { background: rgba(100,150,255,0.15); color: #8ab4ff; border: 1px solid rgba(100,150,255,0.25); }
+  .role-pm { background: rgba(200,169,110,0.15); color: var(--accent); border: 1px solid rgba(200,169,110,0.25); }
+
+  .project-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 700; color: var(--white); line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .project-partner { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 1.5rem; }
+  .project-desc { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.8; margin-bottom: 2rem; }
+
+  .project-details { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
+  .detail-row { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.82rem; color: rgba(255,255,255,0.65); }
+  .detail-row::before { content: '→'; color: var(--accent); font-size: 0.75rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+  .project-press { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .press-link {
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); text-decoration: none;
+    padding: 0.3rem 0.7rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .press-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    background: var(--accent);
+    padding: 4rem 3rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .about-strip-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: var(--black); line-height: 1.1; }
+  .about-strip-body { font-size: 0.9rem; color: rgba(10,10,10,0.7); line-height: 1.8; }
+
+  /* FOOTER */
+  footer {
+    background: #0a0a0a; border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 2.5rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--white); }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+  .hero-content > * { animation: fadeUp 0.8s ease both; }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.55s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero { padding: 80px 1.5rem 4rem; }
+    .project-card, .project-card:nth-child(even) { grid-template-columns: 1fr; direction: ltr; }
+    .project-visual { min-height: 280px; }
+    .project-info { padding: 2.5rem 2rem; }
+    .projects-section { padding: 4rem 1.5rem; }
+    .about-strip { grid-template-columns: 1fr; gap: 1.5rem; padding: 3rem 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; padding: 2rem 1.5rem; }
+    .hero-stats { flex-wrap: wrap; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Wesley Bediako</a>
+  <div class="nav-right">
+    <a href="#projects">Projects</a>
+    <a href="wesley_bediako_cv_portfolio.html">CV</a>
+    <a class="nav-cta" href="mailto:wesleybediako@icloud.com">Get in Touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Product Manager · Adidas Running</div>
+    <h1 class="hero-title">
+      Selected
+      <span class="line2">Projects</span>
+    </h1>
+    <p class="hero-sub">
+      Global collaborations at the intersection of sport, culture, and identity — built from concept to market across Adidas Running.
+    </p>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Global Launches</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Continents</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div>
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Years at Adidas</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="section-label">Work</div>
+  <h2 class="projects-heading">Collaboration Projects</h2>
+
+  <!-- PROJECT 1: Hermanos Koumori x UltraBOOST 5 -->
+  <div class="project-card">
+    <div class="project-visual">
+      <img 
+        src="https://www.highsnobiety.com/static-assets/dato/1767966625-adidas-adizero-evo-sl-hk-20.jpg" 
+        alt="Hermanos Koumori x adidas UltraBOOST 5"
+        onerror="this.style.background='#1a1714'; this.style.minHeight='400px';"
+      />
+      <div class="project-visual-overlay"></div>
+      <div class="project-num-badge">01 / 04</div>
+      <div class="press-badge">Hypebeast · Highsnobiety</div>
+    </div>
+    <div class="project-info">
+      <div class="project-meta">
+        <span class="project-tag">Running Footwear</span>
+        <span class="project-date">June 2025</span>
+        <span class="project-role-badge role-apm">APM Role</span>
+      </div>
+      <h3 class="project-name">Hermanos Koumori × adidas UltraBOOST 5</h3>
+      <div class="project-partner">Partner: Hermanos Koumori — Mexico City</div>
+      <p class="project-desc">
+        A performance running collab with Mexico City-based sport imprint Hermanos Koumori. 
+        The shoe brings the brand's earthy, urban palette — drawn from the muted tones of Mexico City — 
+        to one of Adidas Running's most iconic silhouettes.
+      </p>
+      <div class="project-details">
+        <div class="detail-row">Managed partner communication and stakeholder alignment throughout the creation phase</div>
+        <div class="detail-row">Coordinated across Design, Comms & Development to execute product from concept to shelf</div>
+        <div class="detail-row">Supported production and launch logistics for global release via Adidas.com and Hermanos Koumori stores</div>
+      </div>
+      <div class="project-press">
+        <a class="press-link" href="https://hypebeast.com/2025/6/hermanos-koumori-adidas-ultraboost-5-collaboration-release-info" target="_blank">Hypebeast →</a>
+        <a class="press-link" href="https://www.highsnobiety.com/p/adidas-adizero-evo-sl-hermanos-koumori/" target="_blank">Highsnobiety →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 2: Hermanos Koumori x Adizero EVO SL -->
+  <div class="project-card">
+    <div class="project-visual">
+      <img
+        src="https://www.highsnobiety.com/static-assets/dato/1767966625-adidas-adizero-evo-sl-hk-11.jpg"
+        alt="Hermanos Koumori x adidas Adizero EVO SL"
+        onerror="this.style.background='#161410'; this.style.minHeight='400px';"
+      />
+      <div class="project-visual-overlay"></div>
+      <div class="project-num-badge">02 / 04</div>
+      <div class="press-badge">Highsnobiety Exclusive</div>
+    </div>
+    <div class="project-info">
+      <div class="project-meta">
+        <span class="project-tag">Running Footwear</span>
+        <span class="project-date">January 2026</span>
+        <span class="project-role-badge role-apm">APM Role</span>
+      </div>
+      <h3 class="project-name">Hermanos Koumori × adidas Adizero EVO SL</h3>
+      <div class="project-partner">Partner: Hermanos Koumori — Mexico City</div>
+      <p class="project-desc">
+        Second chapter of the Hermanos Koumori partnership, bringing the Mexico City imprint's 
+        earthy aesthetic to the Adizero EVO SL — one of Adidas Running's breakthrough crossover silhouettes of 2024–25. 
+        The shoe earned coverage as an Highsnobiety exclusive, praised for its restrained, tonal redesign.
+      </p>
+      <div class="project-details">
+        <div class="detail-row">Drove full product creation process from brief through global January 2026 launch</div>
+        <div class="detail-row">Managed ongoing partner relationship with Hermanos Koumori across multiple seasons</div>
+        <div class="detail-row">Collaborated with Triad to translate brand aesthetic into final product</div>
+      </div>
+      <div class="project-press">
+        <a class="press-link" href="https://www.highsnobiety.com/p/adidas-adizero-evo-sl-hermanos-koumori/" target="_blank">Highsnobiety Exclusive →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 3: LABRUM x Adizero SS26 -->
+  <div class="project-card">
+    <div class="project-visual" style="background: linear-gradient(135deg, #1a1205 0%, #2a1c08 40%, #0f0f14 100%);">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;padding:2rem;">
+        <div style="font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;color:rgba(200,169,110,0.15);text-align:center;line-height:1;">LABRUM<br>×<br>adidas</div>
+        <div style="width:60px;height:2px;background:var(--accent);opacity:0.4;"></div>
+        <div style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.2);">London Fashion Week Preview</div>
+      </div>
+      <div class="project-visual-overlay"></div>
+      <div class="project-num-badge">03 / 04</div>
+      <div class="press-badge">Hypebae · T3 · Sneakerfreaker</div>
+    </div>
+    <div class="project-info">
+      <div class="project-meta">
+        <span class="project-tag">Running Capsule</span>
+        <span class="project-date">March 2026</span>
+        <span class="project-role-badge role-pm">PM Role</span>
+      </div>
+      <h3 class="project-name">LABRUM London × adidas Adizero SS26</h3>
+      <div class="project-partner">Partner: LABRUM London (Foday Dumbuya) — London</div>
+      <p class="project-desc">
+        A full performance running capsule fusing LABRUM founder Foday Dumbuya's West African heritage 
+        with Adidas Running technology. Featuring cowrie shell motifs and terracotta ventilation brick-inspired prints, 
+        the collection launched globally on 3rd March 2026 — first previewed on the LABRUM AW26 London Fashion Week runway.
+      </p>
+      <div class="project-details">
+        <div class="detail-row">Led product marketing strategy as PM for global Running Collaborations & Partnerships</div>
+        <div class="detail-row">Managed full capsule including Adizero EVO SL, running jacket, shorts, singlets and accessories</div>
+        <div class="detail-row">Coordinated global launch across adidas.com, LABRUM webstore, adidas app and selected retailers</div>
+        <div class="detail-row">Worked closely with LABRUM's Foday Dumbuya to align cultural storytelling with product execution</div>
+      </div>
+      <div class="project-press">
+        <a class="press-link" href="https://hypebae.com/2026/3/labrum-adidas-adizero-collaboration-ss26-sportswear-sneakers-london-where-to-buy" target="_blank">Hypebae →</a>
+        <a class="press-link" href="https://www.sneakerfreaker.com/performance/releases/labrum-adidas-adizero-evo-sl-price-buy-release-date" target="_blank">Sneakerfreaker →</a>
+        <a class="press-link" href="https://labrumlondon.com/blogs/news/labrum-and-adidas-launch-ss26-adizero-running-collection" target="_blank">Official Release →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 4: Song for the Mute x Adidas Running SS26 -->
+  <div class="project-card">
+    <div class="project-visual" style="background: linear-gradient(160deg, #0d1015 0%, #1a1a14 50%, #100d0a 100%);">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;padding:2rem;">
+        <div style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:rgba(255,255,255,0.08);text-align:center;line-height:1.1;">Song for<br>the Mute<br>×<br>adidas</div>
+        <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(200,169,110,0.3);">"The First Breath" — SS26</div>
+      </div>
+      <div class="project-visual-overlay"></div>
+      <div class="project-num-badge">04 / 04</div>
+      <div class="press-badge">Hypebeast · Highsnobiety</div>
+    </div>
+    <div class="project-info">
+      <div class="project-meta">
+        <span class="project-tag">Running Performance</span>
+        <span class="project-date">April 2026</span>
+        <span class="project-role-badge role-pm">PM Role</span>
+      </div>
+      <h3 class="project-name">Song for the Mute × adidas Running SS26 — "The First Breath"</h3>
+      <div class="project-partner">Partner: Song for the Mute (Lyna Ty & Melvin Tanaya) — Sydney</div>
+      <p class="project-desc">
+        The first-ever performance running collection from Sydney-based label Song for the Mute and adidas Running. 
+        Titled "The First Breath," the collection reframes performance as something instinctive and personal — 
+        capturing fog-heavy mornings and the rawness of beginnings. Centred on a reworked Supernova Rise 3 and the Adi365 apparel system.
+      </p>
+      <div class="project-details">
+        <div class="detail-row">Managed global product marketing strategy for the first-ever SFTM × adidas Running performance launch</div>
+        <div class="detail-row">Oversaw the Supernova Rise 3 and Adi365 apparel system from creative brief to global April 2, 2026 drop</div>
+        <div class="detail-row">Coordinated global distribution across adidas.com, SFTM, and premium retail partners worldwide</div>
+        <div class="detail-row">Translated the label's avant-garde design language into a coherent product marketing narrative</div>
+      </div>
+      <div class="project-press">
+        <a class="press-link" href="https://hypebeast.com/2026/4/song-for-the-mute-adidas-running-ss26-collaboration-info" target="_blank">Hypebeast →</a>
+        <a class="press-link" href="https://hypebae.com/2026/4/adidas-song-for-the-mute-running-collaboration-supernova-where-to-buy" target="_blank">Hypebae →</a>
+        <a class="press-link" href="https://news.adidas.com/running/adidas-launch-running-collaboration-with-song-for-the-mute/s/c2f0306d-7451-4506-b9cf-f209f98d9070" target="_blank">adidas Official →</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ABOUT STRIP -->
+<div class="about-strip">
+  <div>
+    <h2 class="about-strip-title">From Concept<br>to Culture.</h2>
+  </div>
+  <div>
+    <p class="about-strip-body">
+      Each of these projects began as a creative brief and became a globally distributed product. My role spans the full creation cycle — from managing partner relationships and aligning cross-functional teams, to coordinating launches across adidas.com, retail, and premium stockists worldwide.<br><br>
+      The common thread: collaborations that use sport as a vehicle for cultural storytelling.
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Wesley Sarpong Bediako</div>
+  <div class="footer-links">
+    <a href="mailto:wesleybediako@icloud.com">Email</a>
+    <a href="https://www.linkedin.com/in/wesley-sarpong-b-0324b874/" target="_blank">LinkedIn</a>
+    <a href="wesley_bediako_cv_portfolio.html">View CV</a>
+  </div>
+</footer>
+
+</body>
+</html>
