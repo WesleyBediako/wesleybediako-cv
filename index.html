@@ -319,6 +319,45 @@
     .section-num { font-size: 2.5rem; }
     .section-title { font-size: 1.5rem; }
   }
+ @media print {
+  @page { size: A4 portrait; margin: 10mm; }
+
+  body {
+    font-size: 11pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  nav {
+    display: none !important;
+  }
+
+  footer {
+    display: none !important;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .hero {
+    display: block !important;
+  }
+
+  .hero-left,
+  .hero-right {
+    width: 100% !important;
+    padding: 20px !important;
+  }
+
+  .exp-item,
+  .project,
+  .skill-card {
+    page-break-inside: avoid;
+  }
+}
 </style>
 </head>
 <body>
